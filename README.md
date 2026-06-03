@@ -1,16 +1,84 @@
-# React + Vite
+# Movie React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + Vite movie discovery app with TMDb search and Appwrite-powered trending recommendations.
 
-Currently, two official plugins are available:
+Users can search thousands of movies, view poster cards, ratings, language, and release year, and discover trending titles saved in Appwrite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Search movies using the TMDb API
+- Debounced live search input for efficient querying
+- Trending movies section powered by Appwrite document counts
+- Responsive movie cards with posters, ratings, language, and year
+- Loading and error handling states
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### Requirements
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js 18+ or compatible version
+- TMDb API key
+- Appwrite project with database and collection configured
+
+### Install
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root with:
+
+```env
+VITE_TMDB_API_KEY=your_tmdb_api_key
+VITE_APPWRITE_DATABASE_id=your_appwrite_database_id
+VITE_APPWRITE_PROJECT_ID=your_appwrite_project_id
+VITE_APPWRITE_COLLECTION_ID=your_appwrite_collection_id
+```
+
+> Note: The Appwrite endpoint is currently set to `https://fra.cloud.appwrite.io/v1` in `src/appwrite.js`.
+
+### Run Locally
+
+```bash
+npm run dev
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview
+
+```bash
+npm run preview
+```
+
+## Appwrite Integration
+
+This app uses Appwrite to store search counts and retrieve trending movie cards.
+
+- `updateSearchCount` stores or updates a search term count
+- `getTrendingMovies` fetches the top 5 most searched movies
+
+## Tech Stack
+
+- React 19
+- Vite
+- Appwrite
+- Tailwind-style CSS classes
+
+## Project Structure
+
+- `src/App.jsx` — main app and movie search logic
+- `src/components/Search.jsx` — search input component
+- `src/components/MovieCard.jsx` — movie display card
+- `src/components/Spinner.jsx` — loading indicator
+- `src/appwrite.js` — Appwrite database integration
+
+## License
+
+Distributed under the MIT License.
